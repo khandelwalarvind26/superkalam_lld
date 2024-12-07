@@ -25,3 +25,23 @@
     ```sql
     
     ```
+
+
+# POST /book/{booking_id}
+- **Description**: 
+    - To be used by service which processes a booking from the kafka queue
+    - If transaction failed -> delete booking and mark seats as empty
+    - If succeded -> mark booking as completed
+
+- **Request**:
+    - Path params:
+        - `booking_id`: id of the booking which is to be processed
+    - Body(JSON):
+        ```json
+        {
+            status: string //success/failure
+        }
+        ```
+
+- **Response**:
+    - `200 success`
