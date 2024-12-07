@@ -5,6 +5,8 @@
     - Release all seats in that booking -> mark as empty
     - Mark booking as failed
 
+---
+
 ## Payments polling service
 - Iterate over payments db at regular intervals
 - If a payment is pending since a limit above threshold
