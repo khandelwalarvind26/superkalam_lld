@@ -1,5 +1,5 @@
 ```sql
-CREATE TYPE booking_status AS ENUM ('waiting', 'confirmed');
+CREATE TYPE booking_status AS ENUM ('waiting', 'confirmed', 'failed');
 
 CREATE TABLE IF NOT EXISTS bookings(
 

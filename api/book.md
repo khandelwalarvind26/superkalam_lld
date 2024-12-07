@@ -30,7 +30,7 @@
 # POST /book/{booking_id}
 - **Description**: 
     - To be used by service which processes a booking from the kafka queue
-    - If transaction failed -> delete booking and mark seats as empty
+    - If transaction failed -> mark booking as failed and mark seats as empty
     - If succeded -> mark booking as completed
 
 - **Request**:
