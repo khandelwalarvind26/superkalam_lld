@@ -70,7 +70,8 @@
                 id: number,
                 start_time: timestamp,
                 theater_name: string,
-                price: number,
+                min_price: number,
+                max_price: number,
                 availability: float //percentage
             }
         ] 

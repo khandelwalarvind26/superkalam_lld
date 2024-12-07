@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS seats(
 
     screen_id INT NOT NULL,
     show_id INT NOT NULL,
-    booking_id INT,
+    booking_id VARCHAR(64),
     FOREIGN KEY (screen_id) REFERENCES screens(id) ON DELETE CASCADE,
     FOREIGN KEY (show_id) REFERENCES shows(id) ON DELETE CASCADE,
     FOREIGN KEY (booking_id) REFERENCES bookings(id)

@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS transactions(
     amount INT NOT NULL,
     status txn_status NOT NULL,
 
-    booking_id INT NOT NULL,
+    booking_id VARCHAR(64) NOT NULL,
     FOREIGN KEY (booking_id) REFERENCES bookings(id)
 
 );
