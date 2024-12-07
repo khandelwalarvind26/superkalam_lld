@@ -1,5 +1,5 @@
 ```sql
-CREATE TYPE txn_status AS ENUM ('pending', 'completed');
+CREATE TYPE txn_status AS ENUM ('pending', 'success', 'failed');
 
 CREATE TABLE IF NOT EXISTS transactions(
 
