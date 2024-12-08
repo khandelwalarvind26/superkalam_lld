@@ -1,11 +1,58 @@
 ```sql
+/*All movie details*/
 CREATE TABLE IF NOT EXISTS movies (
 
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    rating INT
+    rating INT,
+    duration INT NOT NULL,
+    release_date DATE NOT NULL,
+    about VARCHAR(500)
 
 );
+```
+
+```sql
+CREATE TABLE IF NOT EXISTS actors (
+
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+    picture BYTEA NOT NULL,
+    age INT
+
+);
+```
+
+```sql
+/* Many to many relation between movies and actors */
+CREATE TABLE IF NOT EXISTS cast (
+
+    actor_id INT NOT NULL,
+    movie_id INT NOT NULL,
+    PRIMARY KEY (actor_id, movie_id),
+    role VARCHAR(100) NOT NULL, -- eg. Amir khan plays rancho so Rancho will be the role
+
+    FOREIGN KEY (actor_id) REFERENCES actors(id),
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+    
+);
+```
+
+
+```sql
+/*Used to fetch all reviews related to a movie to display when the movie is loaded*/
+CREATE TABLE IF NOT EXISTS reviews(
+    
+    id SERIAL PRIMARY KEY,
+    rating INT NOT NULL,
+    content VARCHAR(500),
+
+    username VARCHAR(100),
+    FOREIGN KEY (username) REFERENCES users(username),
+    movie_id INT NOT NULL,
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
+
+)
 ```
 
 ```sql

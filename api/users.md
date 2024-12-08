@@ -2,7 +2,7 @@
 - **Description**: Creates a new user
 - **Request**:
     - Body(JSON):
-        ```bash
+        ```json
         {
             "username": "khandelwalarvind26",
             "location": "Mumbai",
@@ -14,6 +14,6 @@
     `User already exists`
 
 - **SQL Query**:
-    ```bash
+    ```sql
     INSERT INTO users (username, location) VALUES(req.username, req.location);
     ```

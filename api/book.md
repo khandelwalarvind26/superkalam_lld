@@ -1,4 +1,4 @@
-# POST /book/
+## POST /book/
 - **Description**: 
     - Create a pending booking
     - Mark seats as booked
@@ -27,7 +27,7 @@
     ```
 
 
-# POST /book/{booking_id}
+## POST /book/{booking_id}
 - **Description**: 
     - To be used by service which processes a booking from the kafka queue
     - If transaction failed -> mark booking as failed and mark seats as empty
