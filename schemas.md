@@ -1,10 +1,21 @@
 ```sql
+-- Simple users table for a user which comes for booking a show to the platform
+CREATE TABLE IF NOT EXISTS users (
+
+    username VARCHAR(100) PRIMARY KEY,
+    city VARCHAR(100) NOT NULL
+    
+);
+```
+
+```sql
 /*All movie details*/
 CREATE TABLE IF NOT EXISTS movies (
 
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     rating INT,
+    thumbnail VARCHAR(100),
     duration INT NOT NULL,
     release_date DATE NOT NULL,
     about VARCHAR(500)
@@ -13,11 +24,12 @@ CREATE TABLE IF NOT EXISTS movies (
 ```
 
 ```sql
+-- All actors info stored in this table
 CREATE TABLE IF NOT EXISTS actors (
 
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL
-    picture BYTEA NOT NULL,
+    picture VARCHAR(100), -- Url to the picture
     age INT
 
 );
@@ -34,7 +46,7 @@ CREATE TABLE IF NOT EXISTS cast (
 
     FOREIGN KEY (actor_id) REFERENCES actors(id),
     FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
-    
+
 );
 ```
 
@@ -45,7 +57,7 @@ CREATE TABLE IF NOT EXISTS reviews(
     
     id SERIAL PRIMARY KEY,
     rating INT NOT NULL,
-    content VARCHAR(500),
+    content TEXT,
 
     username VARCHAR(100),
     FOREIGN KEY (username) REFERENCES users(username),
@@ -55,14 +67,6 @@ CREATE TABLE IF NOT EXISTS reviews(
 )
 ```
 
-```sql
-CREATE TABLE IF NOT EXISTS users (
-
-    username VARCHAR(100) PRIMARY KEY,
-    city VARCHAR(100) NOT NULL
-    
-);
-```
 
 ```sql
 CREATE TABLE IF NOT EXISTS theaters(
@@ -80,6 +84,7 @@ CREATE TABLE IF NOT EXISTS screens(
 
     id SERIAL PRIMARY KEY,
     capacity INT NOT NULL,
+    screen_number CHAR NOT NULL, -- A, B, Z, etc.
 
     theater_id INT NOT NULL,
     FOREIGN KEY (theater_id) REFERENCES theaters(id) ON DELETE CASCADE
@@ -106,12 +111,14 @@ CREATE TABLE IF NOT EXISTS shows (
 
 ```sql
 CREATE TYPE seat_status AS ENUM ('empty', 'booked');
+CREATE TYPE seat_types AS ENUM ('platinum','gold','silver');
 
 CREATE TABLE IF NOT EXISTS seats(
 
     id SERIAL PRIMARY KEY,
     status seat_status NOT NULL,
     seat_number VARCHAR(3) NOT NULL, /* A3, C16, etc.*/
+    seat_type seat_types NOT NULL,
     price INT NOT NULL,
 
     screen_id INT NOT NULL,
@@ -125,6 +132,7 @@ CREATE TABLE IF NOT EXISTS seats(
 ```
 
 ```sql
+/*Booking here basically refers to a ticket*/
 CREATE TYPE booking_status AS ENUM ('waiting', 'confirmed', 'failed');
 
 CREATE TABLE IF NOT EXISTS bookings(
