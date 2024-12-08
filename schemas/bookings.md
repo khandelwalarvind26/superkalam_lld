@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS bookings(
 
     id VARCHAR(64) PRIMARY KEY,
     created_at TIMESTAMP NOT NULL,
+    status booking_status NOT NULL,
 
     username VARCHAR(100) NOT NULL,
     transaction_id VARCHAR(64) NOT NULL,
