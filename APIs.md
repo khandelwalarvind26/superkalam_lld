@@ -2,8 +2,8 @@
 ## POST /users/
 - **Description**: Creates a new user
 - **Request**:
-    - Body(JSON):
-        ```json
+    - Body(json):
+        ```bash
         {
             username: string,
             location: {
@@ -21,10 +21,10 @@
 ## GET /movies/
 - **Description**: Return a list of all movies in DB
 - **Request**:
-    - Body(JSON):
+    - Body(json):
 - **Response**:
     - `200 success`:
-        ```json
+        ```bash
         [
             {   
                 id: number,
@@ -45,7 +45,7 @@
         - `search_query`: Search query to which similar movies are to be retruned
 - **Response**:
     - `200 success`:
-        ```json
+        ```bash
         [
             {   
                 id: number,
@@ -65,7 +65,7 @@
         - `movie_id`: id of the movie to be queried
 - **Response**:
     - `200 success`:
-        ```json
+        ```bash
         {   
                 id: number,
                 name: string,
@@ -98,8 +98,8 @@
 - **Request**:
     - Path Parameters:
         - `movie_id`: id of the movie whose shoes we want
-    - Body(JSON):
-        ```json
+    - Body(json):
+        ```bash
         {
             username: string, // Used to get the location of the user and hence, find nearby shows   
             language: string,
@@ -108,7 +108,7 @@
         ```
 - **Response**:
     - `200 success`:
-        ```json
+        ```bash
         [
             {
                 id: number,
@@ -132,7 +132,7 @@
 
 - **Response**:
     - `200 success`:
-        ```json
+        ```bash
         {
             id: number,
             start_time: timestamp,
@@ -160,8 +160,8 @@
     - Create a pending booking
 
 - **Request**:
-    - Body(JSON):
-        ```json
+    - Body(json):
+        ```bash
         {
             username: string, // username which makes the booking
             seat_ids: [number] //ids of seats to be booked
@@ -170,7 +170,7 @@
 
 - **Response**:
     - `200 success`:
-        ```json
+        ```bash
         {
             booking_id: string,
             total_amount: number
@@ -187,8 +187,8 @@
     - Initiate transaction 
 
 - **Request**:
-    - Body(JSON):
-        ```json
+    - Body(json):
+        ```bash
         {
             booking_id: string,
             amount: number // total amount to be payed
@@ -210,8 +210,8 @@
 - **Request**:
     - Path parameters:
         `transaction_id`: Transaction whose status is being conveyed by payment gateway
-    - Body(JSON):
-        ```json
+    - Body(json):
+        ```bash
         {
             status: string // success/failure
         }
@@ -230,8 +230,8 @@
     - Also need to implement authentication
 
 - **Request**:
-    - Body(JSON):
-        ```json
+    - Body(json):
+        ```bash
         {
             booking_id: string,
             status: string // success/failure
@@ -254,7 +254,7 @@
 
 - **Response**:
     - `200 success`:
-        ```json
+        ```bash
         {
             created_at: datetime,
             booking_status: string,
