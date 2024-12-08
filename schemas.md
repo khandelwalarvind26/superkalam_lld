@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS movies (
 CREATE TABLE IF NOT EXISTS actors (
 
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
+    name VARCHAR(100) NOT NULL,
     picture VARCHAR(100), -- Url to the picture
     age INT
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS actors (
 
 ```sql
 /* Many to many relation between movies and actors */
-CREATE TABLE IF NOT EXISTS cast (
+CREATE TABLE IF NOT EXISTS movie_cast (
 
     actor_id INT NOT NULL,
     movie_id INT NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS reviews(
     movie_id INT NOT NULL,
     FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE
 
-)
+);
 ```
 
 
@@ -143,9 +143,11 @@ CREATE TABLE IF NOT EXISTS bookings(
 
     username VARCHAR(100) NOT NULL,
     transaction_id VARCHAR(64) NOT NULL,
-    FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE,
-    FOREIGN KEY (trasaction_id) REFERENCES transactions(id)
+    FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
 );
+
+-- Run after adding transactions table
+ALTER TABLE bookings ADD FOREIGN KEY (transaction_id) REFERENCES transactions(id);
 ```
 
 ```sql
